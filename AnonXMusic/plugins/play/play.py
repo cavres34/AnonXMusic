@@ -29,6 +29,8 @@ from config import BANNED_USERS, lyrical
     filters.command(
         [
             "oynat",
+            "voynat",
+            "voynat",
             "play", 
             "vplay",
             "cplay",
@@ -520,6 +522,7 @@ async def play_playlists_command(client, CallbackQuery, _):
     callback_request = callback_data.split(None, 1)[1]
     (
         videoid,
+        voynat,
         user_id,
         ptype,
         mode,
