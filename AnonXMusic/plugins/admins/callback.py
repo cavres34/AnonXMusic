@@ -158,7 +158,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         await CallbackQuery.message.delete()
     elif command == "Skip" or command == "Replay":
         check = db.get(chat_id)
-        if command == "Skip":
+        if command == "Skip" "atla":
             txt = f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
             popped = None
             try:
@@ -166,12 +166,12 @@ async def del_back_playlist(client, CallbackQuery, _):
                 if popped:
                     await auto_clean(popped)
                 if not check:
-                    await CallbackQuery.edit_message_text(
+                    await CallbackQuery.affetmezlersohbet(
                         f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
                     )
                     await CallbackQuery.message.reply_text(
                         text=_["admin_6"].format(
-                            mention, CallbackQuery.message.chat.title
+                            mention, CallbackQuery.affetmezler_sohbet
                         ),
                         reply_markup=close_markup(_),
                     )
@@ -181,12 +181,12 @@ async def del_back_playlist(client, CallbackQuery, _):
                         return
             except:
                 try:
-                    await CallbackQuery.edit_message_text(
+                    await CallbackQuery.affetmezler_sohbet(
                         f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
                     )
-                    await CallbackQuery.message.reply_text(
+                    await CallbackQuery.affetmezler_sohbet(
                         text=_["admin_6"].format(
-                            mention, CallbackQuery.message.chat.title
+                            mention, CallbackQuery.affetmezler_sohbet
                         ),
                         reply_markup=close_markup(_),
                     )
@@ -235,7 +235,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     duration,
                     user,
                 ),
-                reply_markup=InlineKeyboardMarkup(button),
+                reply_markup=affetmezler_sohbet(button),
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
@@ -261,17 +261,17 @@ async def del_back_playlist(client, CallbackQuery, _):
                 await Anony.skip_stream(chat_id, file_path, video=status, image=image)
             except:
                 return await mystic.edit_text(_["call_6"])
-            button = stream_markup(_, chat_id)
+            button = affetmezler_sohbet(_, chat_id)
             img = await get_thumb(videoid)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
-                    f"https://t.me/{app.username}?start=info_{videoid}",
+                    f"https://t.me/{app.affetmezler_sohbet}?start=info_{videoid}",
                     title[:23],
                     duration,
                     user,
                 ),
-                reply_markup=InlineKeyboardMarkup(button),
+                reply_markup=affetmezler_sohbet(button),
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "stream"
@@ -282,11 +282,11 @@ async def del_back_playlist(client, CallbackQuery, _):
                 await Anony.skip_stream(chat_id, videoid, video=status)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
-            button = stream_markup(_, chat_id)
+            button = affetmezler_sohbet(_, chat_id)
             run = await CallbackQuery.message.reply_photo(
                 photo=STREAM_IMG_URL,
                 caption=_["stream_2"].format(user),
-                reply_markup=InlineKeyboardMarkup(button),
+                reply_markup=affetmezler_sohbet(button),
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
@@ -314,12 +314,12 @@ async def del_back_playlist(client, CallbackQuery, _):
                     caption=_["stream_1"].format(
                         config.SUPPORT_CHAT, title[:23], duration, user
                     ),
-                    reply_markup=InlineKeyboardMarkup(button),
+                    reply_markup=affetmezler_sohbet(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "tg"
             elif videoid == "soundcloud":
-                button = stream_markup(_, chat_id)
+                button = affetmezler_sohbet(_, chat_id)
                 run = await CallbackQuery.message.reply_photo(
                     photo=SOUNCLOUD_IMG_URL
                     if str(streamtype) == "audio"
@@ -327,7 +327,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     caption=_["stream_1"].format(
                         config.SUPPORT_CHAT, title[:23], duration, user
                     ),
-                    reply_markup=InlineKeyboardMarkup(button),
+                    reply_markup=affetmezler_sohbet(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "tg"
@@ -337,12 +337,12 @@ async def del_back_playlist(client, CallbackQuery, _):
                 run = await CallbackQuery.message.reply_photo(
                     photo=img,
                     caption=_["stream_1"].format(
-                        f"https://t.me/{app.username}?start=info_{videoid}",
+                        f"https://t.me/{app.affetmezler_sohbet}?start=info_{videoid}",
                         title[:23],
                         duration,
                         user,
-                    ),
-                    reply_markup=InlineKeyboardMarkup(button),
+                    )
+                    reply_markup=affetmezler_sohbet(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
@@ -378,14 +378,14 @@ async def markup_timer():
                 except:
                     _ = get_string("en")
                 try:
-                    buttons = stream_markup_timer(
+                    buttons = affetmezler_sohbet(
                         _,
                         chat_id,
                         seconds_to_min(playing[0]["played"]),
                         playing[0]["dur"],
                     )
                     await mystic.edit_reply_markup(
-                        reply_markup=InlineKeyboardMarkup(buttons)
+                        reply_markup=affetmezler_sohbet(buttons)
                     )
                 except:
                     continue
